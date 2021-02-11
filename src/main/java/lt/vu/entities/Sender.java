@@ -1,18 +1,28 @@
 package lt.vu.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@NamedQueries({
+        @NamedQuery(name = "Sender.findAll", query = "select t from Sender as t")
+})
+@Table(name = "SENDER")
+@Getter
+@Setter
 public class Sender implements Serializable {
     public Sender(){
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer name;
+    private String name;
 
     @ManyToMany(mappedBy = "sender")
     private List<CourierService> courierServices = new ArrayList<>();

@@ -1,11 +1,21 @@
 package lt.vu.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@NamedQueries({
+        @NamedQuery(name = "Dispatch.findAll", query = "select t from Dispatch as t")
+})
+@Table(name = "DISPATCH")
+@Getter
+@Setter
 public class Dispatch implements Serializable {
     public Dispatch(){
 
@@ -14,6 +24,8 @@ public class Dispatch implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer dispatchID;
+
+    //SIUNTOS STATUSAS - pristatymas, issiustas, ruosiamas
 
     @ManyToOne
     private CourierService courierService;
