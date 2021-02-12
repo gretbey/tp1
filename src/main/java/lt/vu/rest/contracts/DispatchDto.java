@@ -9,6 +9,6 @@ import javax.persistence.ManyToOne;
 
 @Getter @Setter
 public class DispatchDto {
-    private Integer dispatchID;
+    private String dispatchID;
 }
 

@@ -18,12 +18,13 @@ import java.util.Objects;
 @Getter
 @Setter
 public class CourierService implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String companyCode;
 
     @Size(max = 50)
     @Column(name = "NAME")
+    private String companyCode;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String companyName;
 
     @ManyToMany(mappedBy = "courier")

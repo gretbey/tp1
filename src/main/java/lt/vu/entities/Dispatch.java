@@ -23,7 +23,7 @@ public class Dispatch implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer dispatchID;
+    private String dispatchID;
 
     //SIUNTOS STATUSAS - pristatymas, issiustas, ruosiamas
 
