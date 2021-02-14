@@ -1,15 +1,18 @@
 package lt.vu.services;
 
+import javax.enterprise.context.ApplicationScoped;
+import java.io.Serializable;
 import java.util.Random;
 
-public class DispatchNumberGenerator {
+@ApplicationScoped
+public class DispatchNumberGenerator implements Serializable {
     // Siuntos generavimas : siuntu tarnybos kodas plius random, bet neegzistuojantys skaiciai
-    public Integer generateDispatchNumber() {
+    public String generateDispatchNumber() {
         try {
             Thread.sleep(3000); // Simulate intensive work
         } catch (InterruptedException e) {
         }
-        Integer generatedJerseyNumber = new Random().nextInt(100);
-        return generatedJerseyNumber;
+        String generatedDispatchNumber = "a";
+        return generatedDispatchNumber;
     }
 }

@@ -24,10 +24,10 @@ public class Sender implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String name;
 
-    @ManyToMany(mappedBy = "sender")
+    @ManyToMany//(mappedBy = "SENDER")
     private List<CourierService> courierServices = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany//(mappedBy = "SENDER")
     private List<Dispatch> dispatches = new ArrayList<>();
 
     @Override

@@ -5,8 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -28,9 +26,11 @@ public class Dispatch implements Serializable {
     //SIUNTOS STATUSAS - pristatymas, issiustas, ruosiamas
 
     @ManyToOne
+    @JoinColumn(name="COURIER")
     private CourierService courierService;
 
     @ManyToOne
+    @JoinColumn(name="SENDER")
     private Sender sender;
 
     @Override

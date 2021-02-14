@@ -19,7 +19,7 @@ public class GenerateDispatchNumber implements Serializable {
     @Inject
     DispatchNumberGenerator dispatchNumberGenerator;
 
-    private CompletableFuture<Integer> dispatchNumberGenerationTask = null;
+    private CompletableFuture<String> dispatchNumberGenerationTask = null;
 
     @LoggedInvocation
     public String generateDispatchNumber() {

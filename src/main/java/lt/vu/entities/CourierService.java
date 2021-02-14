@@ -14,7 +14,7 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = "CourierService.findAll", query = "select a from CourierService as a")
 })
-@Table(name = "COURIER")
+@Table(name = "COURIERSERVICE")
 @Getter
 @Setter
 public class CourierService implements Serializable {
@@ -27,10 +27,10 @@ public class CourierService implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String companyName;
 
-    @ManyToMany(mappedBy = "courier")
+    @ManyToMany//(mappedBy = "COURIERSERVICE")
     private List<Sender> senders = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany//(mappedBy = "COURIERSERVICE")
     private List<Dispatch> dispatches = new ArrayList<>();
 
     @Version
