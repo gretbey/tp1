@@ -49,7 +49,6 @@ public class Dispatches implements Serializable {
     @Transactional
     @LoggedInvocation
     public String createDispatch() {
-        //dispatches.setDispatchID(GenerateDispatchNumber());
         dispatchesToCreate.setDispatchID("0");
         dispatchesToCreate.setSender(sender);
         dispatchesToCreate.setCourierService(courierService);

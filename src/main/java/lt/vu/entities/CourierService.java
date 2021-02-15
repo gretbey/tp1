@@ -20,17 +20,21 @@ import java.util.Objects;
 public class CourierService implements Serializable {
 
     @Size(max = 50)
-    @Column(name = "NAME")
+    @Column(name = "CODE")
     private String companyCode;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "COMPANYNAME")
     private String companyName;
 
-    @ManyToMany//(mappedBy = "COURIERSERVICE")
+    @JoinTable(name = "COURIER_SENDERS", joinColumns = {
+            @JoinColumn(name = "COMPANYNAME", referencedColumnName = "COMPANYNAME")}, inverseJoinColumns = {
+            @JoinColumn(name = "NAME", referencedColumnName = "NAME")})
+    @ManyToMany(cascade=CascadeType.ALL)
     private List<Sender> senders = new ArrayList<>();
 
-    @OneToMany//(mappedBy = "COURIERSERVICE")
+    @OneToMany(mappedBy = "courierService")
     private List<Dispatch> dispatches = new ArrayList<>();
 
     @Version

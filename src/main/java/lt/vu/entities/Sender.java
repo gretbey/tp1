@@ -22,12 +22,16 @@ public class Sender implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "NAME")
     private String name;
 
-    @ManyToMany//(mappedBy = "SENDER")
+    @Column(name = "ADDRESS")
+    private String address;
+
+    @ManyToMany(mappedBy = "senders")
     private List<CourierService> courierServices = new ArrayList<>();
 
-    @OneToMany//(mappedBy = "SENDER")
+    @OneToMany(mappedBy = "sender")
     private List<Dispatch> dispatches = new ArrayList<>();
 
     @Override

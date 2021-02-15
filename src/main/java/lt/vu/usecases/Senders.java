@@ -33,7 +33,7 @@ public class Senders {
     }
 
     @Transactional
-    public String createCourierService(){
+    public String createSenders(){
         this.sendersDAO.persist(sendersToCreate);
         return "index?faces-redirect=true";
     }

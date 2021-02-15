@@ -23,15 +23,22 @@ public class Dispatch implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String dispatchID;
 
-    //SIUNTOS STATUSAS - pristatymas, issiustas, ruosiamas
+    @Column(name = "STATUS")
+    private String status;//change status
 
     @ManyToOne
-    @JoinColumn(name="COURIER")
+    @JoinColumn(name = "COURIER")
     private CourierService courierService;
 
     @ManyToOne
-    @JoinColumn(name="SENDER")
+    @JoinColumn(name = "SENDER")
     private Sender sender;
+
+    @Column(name = "RECEIVER")
+    private String receiverName;
+
+    @Column(name = "RECEIVERADDRESS")
+    private String receiverAddress;
 
     @Override
     public boolean equals(Object o) {
