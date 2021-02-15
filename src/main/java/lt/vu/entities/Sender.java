@@ -21,7 +21,6 @@ public class Sender implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "NAME")
     private String name;
 

@@ -2,9 +2,19 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
 >
 <h:head/>
 <h:body>
-
+    <h:form>
+        <h:inputText value="#{senders.sendersToCreate.name}" required="false" />
+        <h:inputText value="#{senders.sendersToCreate.address}" required="false" />
+        <h:commandButton value="Sukurti" action="#{senders.createSenders}"/>
+    </h:form>
+    <h:form>
+        <h:inputText value="#{courierServices.couriersToCreate.companyName}" required="false" />
+        <h:inputText value="#{courierServices.couriersToCreate.companyCode}" required="false" />
+        <h:commandButton value="Sukurti" action="#{courierServices.createCourierService}"/>
+    </h:form>
 </h:body>
 </html>

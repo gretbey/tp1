@@ -24,7 +24,6 @@ public class CourierService implements Serializable {
     private String companyCode;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COMPANYNAME")
     private String companyName;
 

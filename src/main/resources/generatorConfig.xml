@@ -29,7 +29,7 @@
             <ignoreColumn column="opt_lock_version" />
         </table>
         <table schema="public" tableName="COURIER">
-            <generatedKey column="companyCode" identity="true" sqlStatement="JDBC" />
+            <generatedKey column="companyName" identity="true" sqlStatement="JDBC" />
             <ignoreColumn column="opt_lock_version" />
         </table>
         <table schema="public" tableName="SENDER">
