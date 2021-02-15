@@ -16,5 +16,13 @@
         <h:inputText value="#{courierServices.couriersToCreate.companyCode}" required="false" />
         <h:commandButton value="Sukurti" action="#{courierServices.createCourierService}"/>
     </h:form>
+    <h:form>
+        <h:inputText value="#{dispatches.dispatchesToCreate.status}" required="false" />
+        <h:inputText value="#{dispatches.dispatchesToCreate.receiverName}" required="false" />
+        <h:inputText value="#{dispatches.dispatchesToCreate.receiverAddress}" required="false" />
+        <h:inputText value="#{dispatches.companyCode}" required="false" />
+        <h:inputText value="#{dispatches.senderName}" required="false" />
+        <h:commandButton value="Add dispatch" action="#{dispatches.createDispatch}" />
+    </h:form>
 </h:body>
 </html>

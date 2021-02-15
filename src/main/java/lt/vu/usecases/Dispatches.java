@@ -12,10 +12,11 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 @Model
-public class Dispatches implements Serializable {
+public class Dispatches {
     @Inject
     private DispatchesDAO dispatchesDAO;
 
@@ -27,34 +28,39 @@ public class Dispatches implements Serializable {
 
     @Getter
     @Setter
-    private Sender sender;
+    private Dispatch dispatchesToCreate = new Dispatch();
 
     @Getter
-    @Setter
+    private List<Dispatch> allDispatches;
+
+    @Getter @Setter
+    private Sender sender;
+
+    @Getter @Setter
     private CourierService courierService;
 
     @Getter @Setter
-    private Dispatch dispatchesToCreate = new Dispatch();
+    private String senderName;
+
+    @Getter @Setter
+    private String companyCode;
 
     @PostConstruct
-    public void init() {
-        Map<String, String> requestParameters =
-                FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        String compCode = requestParameters.get("companyCode");
-        this.courierService = courierServicesDAO.findOne(compCode);
-        String senderName = requestParameters.get("name");
-        this.sender = sendersDAO.findOne(senderName);
+    public void init(){
+        //loadAllDispatches();
     }
 
     @Transactional
-    @LoggedInvocation
     public String createDispatch() {
-        dispatchesToCreate.setDispatchID("0");
-        dispatchesToCreate.setSender(sender);
-        dispatchesToCreate.setCourierService(courierService);
-        dispatchesDAO.persist(dispatchesToCreate);
-        return "players?faces-redirect=true&teamId=" + this.dispatchesToCreate.getDispatchID();
+        this.sender = sendersDAO.findOne(senderName);
+        dispatchesToCreate.setSender(this.sender);
+        this.courierService = courierServicesDAO.findOne(companyCode);
+        dispatchesToCreate.setCourierService(this.courierService);
+        this.dispatchesDAO.persist(dispatchesToCreate);
+        return "index?faces-redirect=true";
     }
 
-    //remove dispatch
+    private void loadAllDispatches(){
+        this.allDispatches = dispatchesDAO.loadAll();
+    }
 }
