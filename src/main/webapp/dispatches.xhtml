@@ -7,16 +7,20 @@
 <h:head/>
 <h:body>
     <h:form>
+        SENDER
         <h:inputText value="#{senders.sendersToCreate.name}" required="false" />
         <h:inputText value="#{senders.sendersToCreate.address}" required="false" />
+        <h:inputText value="#{senders.couriersString}" required="false" />
         <h:commandButton value="Sukurti" action="#{senders.createSenders}"/>
     </h:form>
     <h:form>
+        COURIER SERVICE
         <h:inputText value="#{courierServices.couriersToCreate.companyName}" required="false" />
         <h:inputText value="#{courierServices.couriersToCreate.companyCode}" required="false" />
         <h:commandButton value="Sukurti" action="#{courierServices.createCourierService}"/>
     </h:form>
     <h:form>
+        DISPATCH
         <h:inputText value="#{dispatches.dispatchesToCreate.status}" required="false" />
         <h:inputText value="#{dispatches.dispatchesToCreate.receiverName}" required="false" />
         <h:inputText value="#{dispatches.dispatchesToCreate.receiverAddress}" required="false" />

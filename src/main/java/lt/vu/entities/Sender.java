@@ -27,7 +27,11 @@ public class Sender implements Serializable {
     @Column(name = "ADDRESS")
     private String address;
 
-    @ManyToMany(mappedBy = "senders")
+
+    @JoinTable(name = "COURIER_SENDERS", joinColumns = {
+            @JoinColumn(name = "NAME", referencedColumnName = "NAME")}, inverseJoinColumns = {
+            @JoinColumn(name = "COMPANYNAME", referencedColumnName = "COMPANYNAME")})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<CourierService> courierServices = new ArrayList<>();
 
     @OneToMany(mappedBy = "sender")

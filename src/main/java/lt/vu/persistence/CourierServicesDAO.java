@@ -23,6 +23,10 @@ public class CourierServicesDAO {
         return em.find(CourierService.class, companyCode);
     }
 
+    public CourierService findOneByName(String companyName){
+        return em.find(CourierService.class, companyName);
+    }
+
     public CourierService update(CourierService courierService){
         return em.merge(courierService);
     }
