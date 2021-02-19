@@ -25,15 +25,12 @@
             <ignoreColumn column="opt_lock_version" />
         </table>
         <table schema="public" tableName="DISPATCH">
-            <generatedKey column="dispatchID" identity="true" sqlStatement="JDBC" />
-            <ignoreColumn column="opt_lock_version" />
-        </table>
-        <table schema="public" tableName="COURIER">
-            <generatedKey column="companyName" identity="true" sqlStatement="JDBC" />
             <ignoreColumn column="opt_lock_version" />
         </table>
         <table schema="public" tableName="SENDER">
-            <generatedKey column="name" identity="true" sqlStatement="JDBC" />
+            <ignoreColumn column="opt_lock_version" />
+        </table>
+        <table schema="public" tableName="COURIER">
             <ignoreColumn column="opt_lock_version" />
         </table>
     </context>

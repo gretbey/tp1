@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head>
+
+</h:head>
+<body>
+<h2>#{senderInfo.sender.name} #{senderInfo.sender.address}</h2>
+<h:form>
+    DISPATCH
+    RECEIVER NAME  <h:inputText value="#{dispatches.dispatchesToCreate.receiverName}" required="true" /><br/>
+    RECEIVER ADDRESS  <h:inputText value="#{dispatches.dispatchesToCreate.receiverAddress}" required="true" /><br/>
+    AVAILABLE COMPANY CODES <ol>
+        <ui:repeat value="#{senderInfo.sender.courierServices}" var="courier">
+            <li><h:link value="#{courier.companyCode}" /></li>
+        </ui:repeat>
+    </ol><br/>
+    COMPANY CODE <h:inputText value="#{dispatches.companyCode}" required="true" /><br/>
+    <h:commandButton value="CREATE ORDER" action="#{dispatches.createDispatch(senderInfo.sender.name)}"/>
+</h:form>
+</body>
+</html>

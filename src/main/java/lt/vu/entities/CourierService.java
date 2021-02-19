@@ -14,7 +14,7 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = "CourierService.findAll", query = "select a from CourierService as a")
 })
-@Table(name = "COURIERSERVICE")
+@Table(name = "COURIER")
 @Getter
 @Setter
 public class CourierService implements Serializable {
@@ -44,9 +44,9 @@ public class CourierService implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CourierService courierService = (CourierService) o;
-        return Objects.equals(companyCode, courierService.companyCode) &&
-                Objects.equals(companyName, courierService.companyName);
+        CourierService courier = (CourierService) o;
+        return Objects.equals(companyCode, courier.companyCode) &&
+                Objects.equals(companyName, courier.companyName);
     }
 
     @Override

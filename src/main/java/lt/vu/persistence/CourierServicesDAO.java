@@ -1,9 +1,6 @@
 package lt.vu.persistence;
 
 import lt.vu.entities.CourierService;
-import lt.vu.entities.Dispatch;
-import lt.vu.entities.Player;
-import lt.vu.entities.Team;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -15,8 +12,8 @@ public class CourierServicesDAO {
     @Inject
     private EntityManager em;
 
-    public void persist(CourierService courierService){
-        this.em.persist(courierService);
+    public void persist(CourierService courier){
+        this.em.persist(courier);
     }
 
     public CourierService findOne(String companyCode){
@@ -27,8 +24,8 @@ public class CourierServicesDAO {
         return em.find(CourierService.class, companyName);
     }
 
-    public CourierService update(CourierService courierService){
-        return em.merge(courierService);
+    public CourierService update(CourierService courier){
+        return em.merge(courier);
     }
 
     public List<CourierService> loadAll() {

@@ -3,7 +3,6 @@ package lt.vu.usecases;
 import lombok.Getter;
 import lombok.Setter;
 import lt.vu.entities.*;
-import lt.vu.interceptors.LoggedInvocation;
 import lt.vu.persistence.*;
 
 import javax.annotation.PostConstruct;
@@ -11,7 +10,6 @@ import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +35,7 @@ public class Dispatches {
     private Sender sender;
 
     @Getter @Setter
-    private CourierService courierService;
+    private CourierService courier;
 
     @Getter @Setter
     private String senderName;
@@ -51,11 +49,11 @@ public class Dispatches {
     }
 
     @Transactional
-    public String createDispatch() {
+    public String createDispatch(String senderName) {
         this.sender = sendersDAO.findOne(senderName);
         dispatchesToCreate.setSender(this.sender);
-        this.courierService = courierServicesDAO.findOne(companyCode);
-        dispatchesToCreate.setCourierService(this.courierService);
+        this.courier = courierServicesDAO.findOne(companyCode);
+        dispatchesToCreate.setCourierService(this.courier);
         this.dispatchesDAO.persist(dispatchesToCreate);
         return "index?faces-redirect=true";
     }

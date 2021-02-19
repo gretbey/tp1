@@ -24,7 +24,7 @@ public class Dispatch implements Serializable {
     private String dispatchID;
 
     @Column(name = "STATUS")
-    private String status;//change status
+    private String status = "created";
 
     @ManyToOne
     @JoinColumn(name = "COURIER")

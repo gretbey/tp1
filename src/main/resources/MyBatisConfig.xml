@@ -6,7 +6,7 @@
     <typeAliases>
         <typeAlias type="lt.vu.mybatis.model.Team" alias="Team"/>
         <typeAlias type="lt.vu.mybatis.model.Player" alias="Player"/>
-        <typeAlias type="lt.vu.mybatis.model.CourierService" alias="CourierService"/>
+        <typeAlias type="lt.vu.mybatis.model.Courier" alias="Courier"/>
         <typeAlias type="lt.vu.mybatis.model.Sender" alias="Sender"/>
         <typeAlias type="lt.vu.mybatis.model.Dispatch" alias="Dispatch"/>
     </typeAliases>
@@ -22,7 +22,7 @@
         <mapper resource="mybatis.xml/TeamMapper.xml"/>
         <mapper resource="mybatis.xml/PlayerMapper.xml"/>
         <mapper resource="mybatis.xml/SenderMapper.xml"/>
-        <mapper resource="mybatis.xml/CourierServiceMapper.xml"/>
+        <mapper resource="mybatis.xml/CourierMapper.xml"/>
         <mapper resource="mybatis.xml/DispatchMapper.xml"/>
     </mappers>
 </configuration>

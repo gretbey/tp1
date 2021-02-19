@@ -3,8 +3,6 @@ package lt.vu.usecases;
 import lombok.Getter;
 import lombok.Setter;
 import lt.vu.entities.CourierService;
-import lt.vu.entities.Sender;
-import lt.vu.entities.Team;
 import lt.vu.persistence.CourierServicesDAO;
 import lt.vu.persistence.SendersDAO;
 
@@ -12,7 +10,6 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @Model
@@ -28,7 +25,7 @@ public class CourierServices {
     private CourierService couriersToCreate = new CourierService();
 
     @Getter
-    private List<CourierService> allCourierServices;
+    private List<CourierService> allCouriers;
 
     @PostConstruct
     public void init(){
@@ -37,11 +34,12 @@ public class CourierServices {
 
     @Transactional
     public String createCourierService(){
+        //couriersToCreate.setCompanyCode(couriersToCreate.getCompanyName().substring(0,2));
         this.courierServicesDAO.persist(couriersToCreate);
         return "index?faces-redirect=true";
     }
 
     private void loadAllCourierServices(){
-        this.allCourierServices = courierServicesDAO.loadAll();
+        this.allCouriers = courierServicesDAO.loadAll();
     }
 }

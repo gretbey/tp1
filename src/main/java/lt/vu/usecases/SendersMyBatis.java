@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Model
-public class SendersMyBattis {
+public class SendersMyBatis {
     @Inject
     private SenderMapper senderMapper;
 
@@ -34,8 +34,8 @@ public class SendersMyBattis {
     }
 
     @Transactional
-    public String createTeam() {
+    public String createSender() {
         senderMapper.insert(senderToCreate);
-        return "/myBatis/teams?faces-redirect=true";
+        return "/myBatis/senders?faces-redirect=true\"";
     }
 }
