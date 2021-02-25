@@ -2,15 +2,18 @@ package lt.vu.usecases;
 
 import lombok.Getter;
 import lombok.Setter;
+import lt.vu.entities.CourierService;
 import lt.vu.mybatis.dao.SenderMapper;
 import lt.vu.mybatis.dao.TeamMapper;
 import lt.vu.mybatis.model.Sender;
 import lt.vu.mybatis.model.Team;
+import lt.vu.persistence.CourierServicesDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Model
@@ -24,6 +27,14 @@ public class SendersMyBatis {
     @Getter @Setter
     private Sender senderToCreate = new Sender();
 
+    @Getter
+    @Setter
+    private String couriersString;
+
+    @Getter
+    @Setter
+    private CourierServicesDAO courierServicesDAO;
+
     @PostConstruct
     public void init() {
         this.loadAllSenders();
@@ -36,6 +47,26 @@ public class SendersMyBatis {
     @Transactional
     public String createSender() {
         senderMapper.insert(senderToCreate);
-        return "/myBatis/senders?faces-redirect=true\"";
+        return "/myBatis/couriers_senders?faces-redirect=true\"";
+    }
+
+    public List<CourierService> getCouriersFromString (){
+        List<CourierService> couriersList = new ArrayList<CourierService>();
+        String[] couriersNames = couriersString.trim().split(",");
+        for(String courierName : couriersNames){
+            CourierService findedCourier = courierServicesDAO.findOneByName(courierName);
+            if (findedCourier == null)
+            {
+                CourierService courierToCreate = new CourierService();
+                courierToCreate.setCompanyName(courierName);
+                courierToCreate.setCompanyCode(courierName.substring(0,2));
+                couriersList.add(courierToCreate);
+            }
+            else
+            {
+                couriersList.add(findedCourier);
+            }
+        }
+        return couriersList;
     }
 }

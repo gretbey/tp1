@@ -12,11 +12,10 @@ import java.util.Objects;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "CourierService.findAll", query = "select a from CourierService as a")
+        @NamedQuery(name = "CourierService.findAll", query = "select a from CourierService as a"),
 })
 @Table(name = "COURIER")
-@Getter
-@Setter
+@Getter @Setter
 public class CourierService implements Serializable {
 
     @Size(max = 50)

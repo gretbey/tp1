@@ -9,18 +9,43 @@
 
 </h:head>
 <body>
-<h2>#{senderInfo.sender.name} #{senderInfo.sender.address}</h2>
+<h2>COMPANY #{senderInfo.sender.name} ADRRESS: #{senderInfo.sender.address}</h2>
+<h3>UPDATE CONTRACTS WITH COURIER SERVICES</h3>
+<h:form>
+    CURRENT AVAILABLE COURIER SERVICES <ol>
+    <ui:repeat value="#{senderInfo.sender.courierServices}" var="courier">
+        <li><h:outputText value="#{courier.companyName}" /></li>
+    </ui:repeat>
+</ol>
+    UPDATE COURIERS  <h:inputText value="#{senderInfo.senders.couriersString}" required="true" /><br/>
+    <h:commandButton value="UPDATE CONTRACTS WITH COURIERS" action="#{senderInfo.updateSenderCourierServices()}"/>
+</h:form>
+<h3>REGISTER NEW ORDER</h3>
 <h:form>
     DISPATCH
     RECEIVER NAME  <h:inputText value="#{dispatches.dispatchesToCreate.receiverName}" required="true" /><br/>
     RECEIVER ADDRESS  <h:inputText value="#{dispatches.dispatchesToCreate.receiverAddress}" required="true" /><br/>
-    AVAILABLE COMPANY CODES <ol>
-        <ui:repeat value="#{senderInfo.sender.courierServices}" var="courier">
-            <li><h:link value="#{courier.companyCode}" /></li>
-        </ui:repeat>
-    </ol><br/>
-    COMPANY CODE <h:inputText value="#{dispatches.companyCode}" required="true" /><br/>
+    COMPANY NAME <h:inputText value="#{dispatches.companyName}" required="true" /><br/>
     <h:commandButton value="CREATE ORDER" action="#{dispatches.createDispatch(senderInfo.sender.name)}"/>
 </h:form>
+<h2>#{senderInfo.sender.name} ALL ORDERS(DISPATCHES)</h2>
+<table border="-">
+    <tr>
+        <th>Dispatch ID</th>
+        <th>Receiver name</th>
+        <th>Receiver address</th>
+        <th>Status</th>
+        <th>Couriers</th>
+    </tr>
+    <ui:repeat value="#{senderInfo.sender.dispatches}" var="dispatch">
+            <tr>
+                <th><h:outputText value="#{dispatch.dispatchID}"/></th>
+                <th><h:outputText value="#{dispatch.receiverName}"/></th>
+                <th><h:outputText value="#{dispatch.receiverAddress}"/></th>
+                <th><h:outputText value="#{dispatch.status}"/></th>
+                <th><h:outputText value="#{dispatch.courierService.companyName}"/></th>
+            </tr>
+    </ui:repeat>
+</table>
 </body>
 </html>

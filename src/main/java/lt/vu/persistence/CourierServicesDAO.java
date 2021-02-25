@@ -16,8 +16,8 @@ public class CourierServicesDAO {
         this.em.persist(courier);
     }
 
-    public CourierService findOne(String companyCode){
-        return em.find(CourierService.class, companyCode);
+    public CourierService findOne(String companyName){
+        return em.find(CourierService.class, companyName);
     }
 
     public CourierService findOneByName(String companyName){

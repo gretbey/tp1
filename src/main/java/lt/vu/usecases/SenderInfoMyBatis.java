@@ -1,6 +1,5 @@
 package lt.vu.usecases;
 
-
 import lombok.Getter;
 import lombok.Setter;
 import lt.vu.entities.Sender;
@@ -13,11 +12,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.jms.Message;
-import javax.persistence.OptimisticLockException;
 import javax.transaction.Transactional;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +21,7 @@ import java.util.Map;
 @Named
 @Getter
 @Setter
-public class SenderInfo implements Serializable {
+public class SenderInfoMyBatis implements Serializable {
 
     @Inject
     private SendersDAO sendersDAO;
@@ -58,10 +54,10 @@ public class SenderInfo implements Serializable {
     @Transactional
     @LoggedInvocation
     public String updateSenderCourierServices(){
-       sender.setCourierServices(senders.getCouriersFromString());
-       sendersDAO.update(sender);
-       return "index?faces-redirect=true";
-       //return "senderInfo?senderName=" + sender.getName() + "&faces-redirect=true";
+        sender.setCourierServices(senders.getCouriersFromString());
+        sendersDAO.update(sender);
+        return "index?faces-redirect=true";
+        //return "senderInfo?senderName=" + sender.getName() + "&faces-redirect=true";
     }
     /*
     //example of handling code with transaction (always require new)

@@ -42,7 +42,7 @@ public class Senders {
     @Transactional
     public String createSenders(){
         this.sendersDAO.persist(sendersToCreate);
-        sendersToCreate.setCourierServices(getCouriersFromString(couriersString));
+        sendersToCreate.setCourierServices(getCouriersFromString());
         sendersDAO.update(sendersToCreate);
         return "index?faces-redirect=true";
     }
@@ -51,7 +51,7 @@ public class Senders {
         this.allSenders = sendersDAO.loadAll();
     }
 
-    public List<CourierService> getCouriersFromString (String sendersString){
+    public List<CourierService> getCouriersFromString (){
         List<CourierService> couriersList = new ArrayList<CourierService>();
         String[] couriersNames = couriersString.trim().split(",");
         for(String courierName : couriersNames){

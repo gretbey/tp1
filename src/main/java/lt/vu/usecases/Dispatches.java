@@ -41,7 +41,7 @@ public class Dispatches {
     private String senderName;
 
     @Getter @Setter
-    private String companyCode;
+    private String companyName;
 
     @PostConstruct
     public void init(){
@@ -52,7 +52,7 @@ public class Dispatches {
     public String createDispatch(String senderName) {
         this.sender = sendersDAO.findOne(senderName);
         dispatchesToCreate.setSender(this.sender);
-        this.courier = courierServicesDAO.findOne(companyCode);
+        this.courier = courierServicesDAO.findOne(companyName);
         dispatchesToCreate.setCourierService(this.courier);
         this.dispatchesDAO.persist(dispatchesToCreate);
         return "index?faces-redirect=true";

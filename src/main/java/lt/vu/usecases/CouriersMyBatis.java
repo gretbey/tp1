@@ -34,6 +34,6 @@ public class CouriersMyBatis {
     @Transactional
     public String createCourier() {
         courierMapper.insert(courierToCreate);
-        return "index";
+        return "index?faces-redirect=true";
     }
 }
