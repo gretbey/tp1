@@ -59,39 +59,6 @@ public class SenderInfoMyBatis implements Serializable {
         return "index?faces-redirect=true";
         //return "senderInfo?senderName=" + sender.getName() + "&faces-redirect=true";
     }
-    /*
-    //example of handling code with transaction (always require new)
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public void handleOptimisticLockException(){
-
-    }
-
-    @Transactional
-    @LoggedInvocation
-    public String createMovie(){
-        movieToCreate.setProducer(producer);
-
-        List<Actor> actors = actorHelpers.getActorsFromString(movieToCreateActors, movieToCreate);
-        for(Actor actor : actors)
-            actorsDAO.persist(actor);
-
-        List<Actor> actorsToSet = new ArrayList<Actor>();
-        for(Actor actor : actors) {
-            List<Actor> found = actorsDAO.findByFirstNameAndLastName(actor.getFirstName(), actor.getLastName());
-            if(found.size() == 0) {
-                actorsDAO.persist(actor);
-                actorsToSet.add(actor);
-            }else {
-                Actor act = found.get(0);
-                actorsToSet.add(act);
-            }
-        }
-
-        movieToCreate.setActorList(actorsToSet);
-
-        moviesDAO.persist(movieToCreate);
-        return "producerInfo?producerId=" + producer.getId() + "&faces-redirect=true";
-    }*/
 
     private void loadSender(String name){
         sender = sendersDAO.findOne(name);

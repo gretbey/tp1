@@ -45,7 +45,7 @@ public class Dispatches {
 
     @PostConstruct
     public void init(){
-        //loadAllDispatches();
+        loadAllDispatches();
     }
 
     @Transactional

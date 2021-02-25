@@ -17,12 +17,11 @@ import java.util.Objects;
 @Table(name = "COURIER")
 @Getter @Setter
 public class CourierService implements Serializable {
-
-    @Size(max = 50)
     @Column(name = "CODE")
     private String companyCode;
 
     @Id
+    @Size(max = 50)
     @Column(name = "COMPANYNAME")
     private String companyName;
 

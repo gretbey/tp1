@@ -49,24 +49,4 @@ public class SendersMyBatis {
         senderMapper.insert(senderToCreate);
         return "/myBatis/couriers_senders?faces-redirect=true\"";
     }
-
-    public List<CourierService> getCouriersFromString (){
-        List<CourierService> couriersList = new ArrayList<CourierService>();
-        String[] couriersNames = couriersString.trim().split(",");
-        for(String courierName : couriersNames){
-            CourierService findedCourier = courierServicesDAO.findOneByName(courierName);
-            if (findedCourier == null)
-            {
-                CourierService courierToCreate = new CourierService();
-                courierToCreate.setCompanyName(courierName);
-                courierToCreate.setCompanyCode(courierName.substring(0,2));
-                couriersList.add(courierToCreate);
-            }
-            else
-            {
-                couriersList.add(findedCourier);
-            }
-        }
-        return couriersList;
-    }
 }

@@ -10,25 +10,25 @@ import java.util.List;
 @ApplicationScoped
 public class CourierServicesDAO {
     @Inject
-    private EntityManager em;
+    private EntityManager entityManager;
 
     public void persist(CourierService courier){
-        this.em.persist(courier);
+        this.entityManager.persist(courier);
     }
 
     public CourierService findOne(String companyName){
-        return em.find(CourierService.class, companyName);
+        return entityManager.find(CourierService.class, companyName);
     }
 
     public CourierService findOneByName(String companyName){
-        return em.find(CourierService.class, companyName);
+        return entityManager.find(CourierService.class, companyName);
     }
 
     public CourierService update(CourierService courier){
-        return em.merge(courier);
+        return entityManager.merge(courier);
     }
 
     public List<CourierService> loadAll() {
-        return em.createNamedQuery("CourierService.findAll", CourierService.class).getResultList();
+        return entityManager.createNamedQuery("CourierService.findAll", CourierService.class).getResultList();
     }
 }

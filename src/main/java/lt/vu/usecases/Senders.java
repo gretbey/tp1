@@ -10,7 +10,6 @@ import lt.vu.persistence.SendersDAO;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.jms.Message;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +51,7 @@ public class Senders {
     }
 
     public List<CourierService> getCouriersFromString (){
-        List<CourierService> couriersList = new ArrayList<CourierService>();
+        List<CourierService> couriersList = new ArrayList<>();
         String[] couriersNames = couriersString.trim().split(",");
         for(String courierName : couriersNames){
             CourierService findedCourier = courierServicesDAO.findOneByName(courierName);

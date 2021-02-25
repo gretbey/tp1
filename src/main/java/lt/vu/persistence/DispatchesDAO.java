@@ -1,8 +1,6 @@
 package lt.vu.persistence;
 
 import lt.vu.entities.Dispatch;
-import lt.vu.entities.Player;
-import lt.vu.entities.Team;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,21 +11,17 @@ import java.util.List;
 public class DispatchesDAO {
 
     @Inject
-    private EntityManager em;
+    private EntityManager entityManager;
 
     public void persist(Dispatch dispatch){
-        this.em.persist(dispatch);
-    }
-
-    public Dispatch findOne(Integer dispatchID){
-        return em.find(Dispatch.class, dispatchID);
+        this.entityManager.persist(dispatch);
     }
 
     public Dispatch update(Dispatch dispatch){
-        return em.merge(dispatch);
+        return entityManager.merge(dispatch);
     }
 
     public List<Dispatch> loadAll() {
-        return em.createNamedQuery("Dispatch.findAll", Dispatch.class).getResultList();
+        return entityManager.createNamedQuery("Dispatch.findAll", Dispatch.class).getResultList();
     }
 }

@@ -17,9 +17,6 @@ public class CourierServices {
     @Inject
     private CourierServicesDAO courierServicesDAO;
 
-    @Inject
-    private SendersDAO sendersDAO;
-
     @Getter
     @Setter
     private CourierService couriersToCreate = new CourierService();
@@ -34,7 +31,6 @@ public class CourierServices {
 
     @Transactional
     public String createCourierService(){
-        //couriersToCreate.setCompanyCode(couriersToCreate.getCompanyName().substring(0,2));
         this.courierServicesDAO.persist(couriersToCreate);
         return "index?faces-redirect=true";
     }

@@ -1,9 +1,6 @@
 package lt.vu.persistence;
 
-import lt.vu.entities.Dispatch;
-import lt.vu.entities.Player;
 import lt.vu.entities.Sender;
-import lt.vu.entities.Team;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,21 +10,21 @@ import java.util.List;
 @ApplicationScoped
 public class SendersDAO {
     @Inject
-    private EntityManager em;
+    private EntityManager entityManager;
 
     public void persist(Sender sender){
-        this.em.persist(sender);
+        this.entityManager.persist(sender);
     }
 
     public Sender findOne(String name){
-        return em.find(Sender.class, name);
+        return entityManager.find(Sender.class, name);
     }
 
     public Sender update(Sender sender){
-        return em.merge(sender);
+        return entityManager.merge(sender);
     }
 
     public List<Sender> loadAll() {
-        return em.createNamedQuery("Sender.findAll", Sender.class).getResultList();
+        return entityManager.createNamedQuery("Sender.findAll", Sender.class).getResultList();
     }
 }

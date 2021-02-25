@@ -5,12 +5,8 @@ import lombok.Setter;
 import lt.vu.entities.CourierService;
 import lt.vu.entities.Sender;
 import lt.vu.mybatis.dao.DispatchMapper;
-import lt.vu.mybatis.dao.TeamMapper;
 import lt.vu.mybatis.model.Dispatch;
-import lt.vu.mybatis.model.Team;
 import lt.vu.persistence.CourierServicesDAO;
-import lt.vu.persistence.DispatchesDAO;
-import lt.vu.persistence.SendersDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -20,9 +16,6 @@ import java.util.List;
 
 @Model
 public class DispatchesMyBatis {
-    @Inject
-    private CourierServicesDAO courierServicesDAO;
-
     @Inject
     private DispatchMapper dispatchMapper;
 
