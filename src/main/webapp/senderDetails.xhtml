@@ -25,7 +25,7 @@
     DISPATCH
     RECEIVER NAME  <h:inputText value="#{dispatches.dispatchesToCreate.receiverName}" required="true" /><br/>
     RECEIVER ADDRESS  <h:inputText value="#{dispatches.dispatchesToCreate.receiverAddress}" required="true" /><br/>
-    COMPANY NAME <h:inputText value="#{dispatches.companyName}" required="true" /><br/>
+    COURIER <h:inputText value="#{dispatches.companyName}" required="true" /><br/>
     <h:commandButton value="CREATE ORDER" action="#{dispatches.createDispatch(senderInfo.sender.name)}"/>
 </h:form>
 <h2>#{senderInfo.sender.name} ALL ORDERS(DISPATCHES)</h2>
@@ -47,5 +47,6 @@
             </tr>
     </ui:repeat>
 </table>
+<h:link outcome="index" value="Back to home page"/>
 </body>
 </html>

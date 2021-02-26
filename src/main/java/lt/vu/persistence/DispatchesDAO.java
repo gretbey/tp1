@@ -1,5 +1,6 @@
 package lt.vu.persistence;
 
+import lt.vu.entities.CourierService;
 import lt.vu.entities.Dispatch;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -23,5 +24,8 @@ public class DispatchesDAO {
 
     public List<Dispatch> loadAll() {
         return entityManager.createNamedQuery("Dispatch.findAll", Dispatch.class).getResultList();
+    }
+    public Dispatch findOne(String dispatchId){
+        return entityManager.find(Dispatch.class, dispatchId);
     }
 }

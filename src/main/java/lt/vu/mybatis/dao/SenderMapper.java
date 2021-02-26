@@ -1,6 +1,9 @@
 package lt.vu.mybatis.dao;
 
 import java.util.List;
+
+import lt.vu.mybatis.model.Courier;
+import lt.vu.mybatis.model.Dispatch;
 import lt.vu.mybatis.model.Sender;
 import org.mybatis.cdi.Mapper;
 

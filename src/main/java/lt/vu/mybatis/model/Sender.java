@@ -1,5 +1,9 @@
 package lt.vu.mybatis.model;
 
+import lt.vu.mybatis.dao.CourierMapper;
+
+import java.util.List;
+
 public class Sender {
     /**
      *
@@ -65,5 +69,9 @@ public class Sender {
      */
     public void setAddress(String address) {
         this.address = address;
+    }
+    private List<Courier> courierServices;
+    public void setCourierServices(List<Courier> courierServices) {
+        this.courierServices = courierServices;
     }
 }

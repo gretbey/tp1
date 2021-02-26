@@ -33,5 +33,6 @@
         <table schema="public" tableName="COURIER">
             <ignoreColumn column="opt_lock_version" />
         </table>
+        <table schema="public" tableName="COURIER_SENDERS"></table>
     </context>
 </generatorConfiguration>

@@ -2,12 +2,12 @@ package lt.vu.usecases;
 
 import lombok.Getter;
 import lombok.Setter;
-import lt.vu.entities.CourierService;
+import lt.vu.mybatis.dao.CourierMapper;
+import lt.vu.mybatis.dao.CourierSendersMapper;
 import lt.vu.mybatis.dao.SenderMapper;
-import lt.vu.mybatis.dao.TeamMapper;
+import lt.vu.mybatis.model.Courier;
+import lt.vu.mybatis.model.CourierSenders;
 import lt.vu.mybatis.model.Sender;
-import lt.vu.mybatis.model.Team;
-import lt.vu.persistence.CourierServicesDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -21,6 +21,12 @@ public class SendersMyBatis {
     @Inject
     private SenderMapper senderMapper;
 
+    @Inject
+    CourierMapper courierMapper;
+
+    @Inject
+    CourierSendersMapper courierSendersMapper;
+
     @Getter
     private List<Sender> allSenders;
 
@@ -33,7 +39,8 @@ public class SendersMyBatis {
 
     @Getter
     @Setter
-    private CourierServicesDAO courierServicesDAO;
+    List<Courier> senderCouriers;
+
 
     @PostConstruct
     public void init() {
@@ -46,7 +53,41 @@ public class SendersMyBatis {
 
     @Transactional
     public String createSender() {
+        senderCouriers = getCouriersFromString();
         senderMapper.insert(senderToCreate);
-        return "/myBatis/couriers_senders?faces-redirect=true\"";
+        senderToCreate.setCourierServices(senderCouriers);
+        senderMapper.updateByPrimaryKey(senderToCreate);
+
+        CourierSenders courierSenders;
+        for (Courier cour : senderCouriers)
+        {
+            courierSenders = new CourierSenders();
+            courierSenders.setCompanyname(cour.getCompanyname());
+            courierSenders.setName(senderToCreate.getName());
+            courierSendersMapper.insert(courierSenders);
+        }
+        return "/myBatis/couriers_senders?faces-redirect=true";
+    }
+
+    public List<Courier> getCouriersFromString (){
+        List<Courier> couriersList = new ArrayList<>();
+        String[] couriersNames = couriersString.trim().split(",");
+        Courier foundCourier = null;
+        for(String courierName : couriersNames){
+            foundCourier = courierMapper.selectByPrimaryKey(courierName);
+
+            if (foundCourier == null)
+            {
+                Courier courierToCreate = new Courier();
+                courierToCreate.setCompanyname(courierName);
+                courierToCreate.setCode(courierName.substring(0,2));
+                couriersList.add(courierToCreate);
+            }
+            else
+            {
+                couriersList.add(foundCourier);
+            }
+        }
+        return couriersList;
     }
 }

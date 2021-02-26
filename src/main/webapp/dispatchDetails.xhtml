@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head>
+</h:head>
+<body>
+<h2>CHANGE STATUS OF ORDER</h2>
+<h:form>
+    DISPATCH ID <h:inputText value="#{dispatchInfo.dispatch.dispatchID}" required="true" /><br/>
+    STATUS <h:inputText value="#{dispatchInfo.dispatch.status}" required="true" /><br/>
+    <h:commandButton value="Update status" action="#{dispatchInfo.updateStatus}"/>
+</h:form>
+<h:link outcome="index" value="Back to home page"/>
+</body>
+</html>

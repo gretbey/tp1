@@ -1,5 +1,7 @@
 package lt.vu.mybatis.model;
 
+import java.util.List;
+
 public class Courier {
     /**
      *
@@ -66,4 +68,13 @@ public class Courier {
     public void setCode(String code) {
         this.code = code;
     }
+
+    private List<Dispatch> dispatches;
+
+    public List<Dispatch> getDispatches() { return this.dispatches; }
+
+    public void setDispatches(List<Dispatch> dispatches) {
+        this.dispatches = dispatches;
+    }
+
 }

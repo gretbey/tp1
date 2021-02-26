@@ -9,6 +9,7 @@
         <typeAlias type="lt.vu.mybatis.model.Courier" alias="Courier"/>
         <typeAlias type="lt.vu.mybatis.model.Sender" alias="Sender"/>
         <typeAlias type="lt.vu.mybatis.model.Dispatch" alias="Dispatch"/>
+        <typeAlias type="lt.vu.mybatis.model.CourierSenders" alias="CourierSenders"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
@@ -24,5 +25,6 @@
         <mapper resource="mybatis.xml/SenderMapper.xml"/>
         <mapper resource="mybatis.xml/CourierMapper.xml"/>
         <mapper resource="mybatis.xml/DispatchMapper.xml"/>
+        <mapper resource="mybatis.xml/CourierSendersMapper.xml"/>
     </mappers>
 </configuration>

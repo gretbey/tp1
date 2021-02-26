@@ -45,4 +45,6 @@ public interface DispatchMapper {
      * @mbg.generated Sat Feb 20 16:34:04 GMT+02:00 2021
      */
     int updateByPrimaryKey(Dispatch record);
+
+    List<Dispatch> selectBySender(String name);
 }

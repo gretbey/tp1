@@ -3,6 +3,7 @@ package lt.vu.usecases;
 
 import lombok.Getter;
 import lombok.Setter;
+import lt.vu.entities.CourierService;
 import lt.vu.entities.Sender;
 import lt.vu.interceptors.LoggedInvocation;
 import lt.vu.persistence.CourierServicesDAO;
@@ -60,8 +61,7 @@ public class SenderInfo implements Serializable {
     public String updateSenderCourierServices(){
        sender.setCourierServices(senders.getCouriersFromString());
        sendersDAO.update(sender);
-       return "index?faces-redirect=true";
-       //return "senderInfo?senderName=" + sender.getName() + "&faces-redirect=true";
+       return "senderDetails?senderName=" + sender.getName() + "&faces-redirect=true";
     }
 
     private void loadSender(String name){

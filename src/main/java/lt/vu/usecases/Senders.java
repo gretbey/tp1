@@ -43,7 +43,7 @@ public class Senders {
         this.sendersDAO.persist(sendersToCreate);
         sendersToCreate.setCourierServices(getCouriersFromString());
         sendersDAO.update(sendersToCreate);
-        return "index?faces-redirect=true";
+        return "couriers_senders.xhtml?faces-redirect=true";
     }
 
     private void loadAllSenders(){
@@ -54,8 +54,8 @@ public class Senders {
         List<CourierService> couriersList = new ArrayList<>();
         String[] couriersNames = couriersString.trim().split(",");
         for(String courierName : couriersNames){
-            CourierService findedCourier = courierServicesDAO.findOneByName(courierName);
-            if (findedCourier == null)
+            CourierService foundCourier = courierServicesDAO.findOneByName(courierName);
+            if (foundCourier == null)
             {
                 CourierService courierToCreate = new CourierService();
                 courierToCreate.setCompanyName(courierName);
@@ -64,7 +64,7 @@ public class Senders {
             }
             else
             {
-                couriersList.add(findedCourier);
+                couriersList.add(foundCourier);
             }
         }
         return couriersList;

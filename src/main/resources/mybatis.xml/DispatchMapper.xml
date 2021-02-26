@@ -69,4 +69,9 @@
     select DISPATCHID, RECEIVERADDRESS, RECEIVER, STATUS, COURIER, SENDER
     from PUBLIC.DISPATCH
   </select>
+  <select id="selectBySender" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select DISPATCHID, RECEIVERADDRESS, RECEIVER, STATUS, COURIER, SENDER
+    from PUBLIC.DISPATCH
+    where SENDER = #{sender,jdbcType=VARCHAR}
+  </select>
 </mapper>

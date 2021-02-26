@@ -15,6 +15,19 @@
         COMPANY CODE  <h:inputText value="#{courierServices.couriersToCreate.companyCode}" required="true"/><br/>
         <h:commandButton value="Create courier service" action="#{courierServices.createCourierService}"/><br/>
     </h:form>
+    <h2>ALL COURIERS</h2>
+    <table border="-">
+        <tr>
+            <th>Name</th>
+            <th>Company code</th>
+        </tr>
+        <ui:repeat value="#{courierServices.allCouriers}" var="courier">
+            <tr>
+                <th><h:link value="#{courier.companyName}" outcome="courierDetails?courierName=#{courier.companyName}"/></th>
+                <th><h:outputText value="#{courier.companyCode}"/></th>
+            </tr>
+        </ui:repeat>
+    </table>
     <h2>CREATE NEW COMPANY(SENDER)</h2>
     <h:form>
         COMPANY NAME  <h:inputText value="#{senders.sendersToCreate.name}" required="true" /><br/>
@@ -30,5 +43,6 @@
             </li>
         </ui:repeat>
     </ol>
+    <h:link outcome="index" value="Back to home page"/>
 </h:body>
 </html>

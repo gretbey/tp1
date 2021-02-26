@@ -32,9 +32,8 @@ public class CourierServices {
     @Transactional
     public String createCourierService(){
         this.courierServicesDAO.persist(couriersToCreate);
-        return "index?faces-redirect=true";
+        return "couriers_senders.xhtml?faces-redirect=true";
     }
-
     private void loadAllCourierServices(){
         this.allCouriers = courierServicesDAO.loadAll();
     }

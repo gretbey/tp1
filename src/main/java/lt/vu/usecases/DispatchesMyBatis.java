@@ -22,16 +22,20 @@ public class DispatchesMyBatis {
     @Getter
     private List<Dispatch> allDispatches;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private Dispatch dispatchToCreate = new Dispatch();
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private String companyName;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private Sender sender;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private CourierService courier;
 
     @PostConstruct
@@ -42,13 +46,15 @@ public class DispatchesMyBatis {
     private void loadAllDispatches() {
         this.allDispatches = dispatchMapper.selectAll();
     }
-
+    public List<Dispatch> loadDispathesBySender(String senderName) { return dispatchMapper.selectBySender(senderName);}
     @Transactional
     public String createDispatch(String senderName) {
         dispatchToCreate.setStatus("created");
         dispatchToCreate.setSender(senderName);
         dispatchToCreate.setCourier(companyName);
         this.dispatchMapper.insert(dispatchToCreate);
-        return "index?faces-redirect=true";
+        return "/myBatis/senderDetails?senderName=" + dispatchToCreate.getSender() + "&faces-redirect=true";
     }
+
+
 }

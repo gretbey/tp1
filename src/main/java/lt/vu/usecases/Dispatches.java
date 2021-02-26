@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.swing.*;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
@@ -53,9 +54,19 @@ public class Dispatches {
         this.sender = sendersDAO.findOne(senderName);
         dispatchesToCreate.setSender(this.sender);
         this.courier = courierServicesDAO.findOne(companyName);
-        dispatchesToCreate.setCourierService(this.courier);
-        this.dispatchesDAO.persist(dispatchesToCreate);
-        return "index?faces-redirect=true";
+        if (sender.getCourierServices().contains(courier)) {
+            dispatchesToCreate.setCourierService(this.courier);
+            this.dispatchesDAO.persist(dispatchesToCreate);
+            return "senderDetails?senderName=" + senderName + "&faces-redirect=true";
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,
+                    "This courier is not available",
+                    "This",
+                    JOptionPane.WARNING_MESSAGE);
+            return "senderDetails?senderName=" + senderName + "&faces-redirect=false";
+        }
     }
 
     private void loadAllDispatches(){

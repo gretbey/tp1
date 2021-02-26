@@ -9,12 +9,12 @@
 
 </h:head>
 <body>
-<h2>COMPANY #{senderInfo.sender.name} ADRRESS: #{senderInfoMyBatis.sender.address}</h2>
+<h2>COMPANY #{senderInfoMyBatis.sender.name} ADRRESS: #{senderInfoMyBatis.sender.address}</h2>
 <h3>UPDATE CONTRACTS WITH COURIER SERVICES</h3>
 <h:form>
     CURRENT AVAILABLE COURIER SERVICES <ol>
-    <ui:repeat value="#{senderInfoMyBatis.sender.courierServices}" var="courier">
-        <li><h:outputText value="#{courier.companyName}" /></li>
+    <ui:repeat value="#{senderInfoMyBatis.loadCouriersBySender(senderInfoMyBatis.sender.name)}" var="courier">
+        <li><h:outputText value="#{courier.companyname}" /></li>
     </ui:repeat>
 </ol>
     UPDATE COURIERS  <h:inputText value="#{senderInfoMyBatis.senders.couriersString}" required="true" /><br/>
@@ -25,7 +25,7 @@
     DISPATCH
     RECEIVER NAME  <h:inputText value="#{dispatchesMyBatis.dispatchToCreate.receiver}" required="true" /><br/>
     RECEIVER ADDRESS  <h:inputText value="#{dispatchesMyBatis.dispatchToCreate.receiveraddress}" required="true" /><br/>
-    COMPANY NAME <h:inputText value="#{dispatchesMyBatis.companyName}" required="true" /><br/>
+    COURIER <h:inputText value="#{dispatchesMyBatis.companyName}" required="true" /><br/>
     <h:commandButton value="CREATE ORDER" action="#{dispatchesMyBatis.createDispatch(senderInfoMyBatis.sender.name)}"/>
 </h:form>
 <h2>#{senderInfoMyBatis.sender.name} ALL ORDERS(DISPATCHES)</h2>
@@ -37,15 +37,16 @@
         <th>Status</th>
         <th>Couriers</th>
     </tr>
-    <ui:repeat value="#{senderInfoMyBatis.sender.dispatches}" var="dispatch">
+    <ui:repeat value="#{dispatchesMyBatis.loadDispathesBySender(senderInfoMyBatis.sender.name)}" var="dispatch">
         <tr>
-            <th><h:outputText value="#{dispatch.dispatchID}"/></th>
-            <th><h:outputText value="#{dispatch.receiverName}"/></th>
-            <th><h:outputText value="#{dispatch.receiverAddress}"/></th>
+            <th><h:outputText value="#{dispatch.dispatchid}"/></th>
+            <th><h:outputText value="#{dispatch.receiver}"/></th>
+            <th><h:outputText value="#{dispatch.receiveraddress}"/></th>
             <th><h:outputText value="#{dispatch.status}"/></th>
-            <th><h:outputText value="#{dispatch.courierService.companyName}"/></th>
+            <th><h:outputText value="#{dispatch.courier}"/></th>
         </tr>
     </ui:repeat>
 </table>
+<h:link outcome="/index" value="Back to home page"/>
 </body>
 </html>

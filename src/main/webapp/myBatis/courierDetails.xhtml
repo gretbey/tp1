@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <h2>#{courierServiceInfoMyBatis.courierService.companyname} ALL ORDERS(DISPATCHES)</h2>
+    <table border="-">
+        <tr>
+            <th>Dispatch ID</th>
+            <th>Receiver name</th>
+            <th>Receiver address</th>
+            <th>Status</th>
+            <th>Couriers</th>
+        </tr>
+        <ui:repeat value="#{courierServiceInfoMyBatis.courierService.dispatches}" var="dispatch">
+            <tr>
+                <th><h:link value="#{dispatch.dispatchid}" outcome="dispatchDetails?dispatchId=#{dispatch.dispatchid}"/></th>
+                <th><h:outputText value="#{dispatch.receiver}"/></th>
+                <th><h:outputText value="#{dispatch.receiveraddress}"/></th>
+                <th><h:outputText value="#{dispatch.status}"/></th>
+                <th><h:outputText value="#{dispatch.courier}"/></th>
+            </tr>
+        </ui:repeat>
+    </table>
+    <h:link outcome="/index" value="Back to home page"/>
+</h:body>
+</html>
