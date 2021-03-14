@@ -3,14 +3,17 @@ package lt.vu.usecases;
 import lombok.Getter;
 import lombok.Setter;
 import lt.vu.entities.CourierService;
-import lt.vu.entities.Sender;
 import lt.vu.mybatis.dao.DispatchMapper;
+import lt.vu.mybatis.dao.SenderMapper;
+import lt.vu.mybatis.model.Courier;
 import lt.vu.mybatis.model.Dispatch;
+import lt.vu.mybatis.model.Sender;
 import lt.vu.persistence.CourierServicesDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
+import javax.swing.*;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -30,14 +33,6 @@ public class DispatchesMyBatis {
     @Setter
     private String companyName;
 
-    @Getter
-    @Setter
-    private Sender sender;
-
-    @Getter
-    @Setter
-    private CourierService courier;
-
     @PostConstruct
     public void init() {
         this.loadAllDispatches();
@@ -46,7 +41,7 @@ public class DispatchesMyBatis {
     private void loadAllDispatches() {
         this.allDispatches = dispatchMapper.selectAll();
     }
-    public List<Dispatch> loadDispathesBySender(String senderName) { return dispatchMapper.selectBySender(senderName);}
+    public List<Dispatch> loadDispatchesBySender(String senderName) { return dispatchMapper.selectBySender(senderName);}
     @Transactional
     public String createDispatch(String senderName) {
         dispatchToCreate.setStatus("created");
@@ -55,6 +50,4 @@ public class DispatchesMyBatis {
         this.dispatchMapper.insert(dispatchToCreate);
         return "/myBatis/senderDetails?senderName=" + dispatchToCreate.getSender() + "&faces-redirect=true";
     }
-
-
 }

@@ -4,8 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="lt.vu.mybatis.model.Team" alias="Team"/>
-        <typeAlias type="lt.vu.mybatis.model.Player" alias="Player"/>
         <typeAlias type="lt.vu.mybatis.model.Courier" alias="Courier"/>
         <typeAlias type="lt.vu.mybatis.model.Sender" alias="Sender"/>
         <typeAlias type="lt.vu.mybatis.model.Dispatch" alias="Dispatch"/>
@@ -20,8 +18,6 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mybatis.xml/TeamMapper.xml"/>
-        <mapper resource="mybatis.xml/PlayerMapper.xml"/>
         <mapper resource="mybatis.xml/SenderMapper.xml"/>
         <mapper resource="mybatis.xml/CourierMapper.xml"/>
         <mapper resource="mybatis.xml/DispatchMapper.xml"/>

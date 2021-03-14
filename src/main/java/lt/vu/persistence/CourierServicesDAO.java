@@ -20,10 +20,6 @@ public class CourierServicesDAO {
         return entityManager.find(CourierService.class, companyName);
     }
 
-    public CourierService findOneByName(String companyName){
-        return entityManager.find(CourierService.class, companyName);
-    }
-
     public CourierService update(CourierService courier){
         return entityManager.merge(courier);
     }

@@ -30,7 +30,6 @@ public class CourierServiceInfo implements Serializable {
     @Inject
     private CourierServicesDAO courierServicesDAO;
 
-
     @Getter
     @Setter
     private CourierService courierService = new CourierService();

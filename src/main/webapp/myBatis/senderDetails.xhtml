@@ -35,7 +35,7 @@
         <th>Status</th>
         <th>Couriers</th>
     </tr>
-    <ui:repeat value="#{dispatchesMyBatis.loadDispathesBySender(senderInfoMyBatis.sender.name)}" var="dispatch">
+    <ui:repeat value="#{dispatchesMyBatis.loadDispatchesBySender(senderInfoMyBatis.sender.name)}" var="dispatch">
         <tr>
             <th><h:outputText value="#{dispatch.dispatchid}"/></th>
             <th><h:outputText value="#{dispatch.receiver}"/></th>

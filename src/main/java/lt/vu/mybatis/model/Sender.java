@@ -70,7 +70,7 @@ public class Sender {
     public void setAddress(String address) {
         this.address = address;
     }
-    private List<Courier> courierServices;
+    public List<Courier> courierServices;
     public void setCourierServices(List<Courier> courierServices) {
         this.courierServices = courierServices;
     }

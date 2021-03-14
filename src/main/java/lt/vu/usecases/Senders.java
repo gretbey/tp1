@@ -52,9 +52,9 @@ public class Senders {
 
     public List<CourierService> getCouriersFromString (){
         List<CourierService> couriersList = new ArrayList<>();
-        String[] couriersNames = couriersString.trim().split(",");
+        String[] couriersNames = couriersString.replaceAll(" ", "").split(",");
         for(String courierName : couriersNames){
-            CourierService foundCourier = courierServicesDAO.findOneByName(courierName);
+            CourierService foundCourier = courierServicesDAO.findOne(courierName);
             if (foundCourier == null)
             {
                 CourierService courierToCreate = new CourierService();
