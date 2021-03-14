@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head>
+
+</h:head>
+<h:body>
+    <h2>CREATE NEW COURIER SERVICE</h2>
+    <h:form>
+        COURIER COMPANY NAME  <h:inputText value="#{courierServices.couriersToCreate.companyName}" required="true" /><br/>
+        COMPANY CODE  <h:inputText value="#{courierServices.couriersToCreate.companyCode}" required="true"/><br/>
+        <h:commandButton value="Create courier service" action="#{courierServices.createCourierService}"/><br/>
+    </h:form>
+    <h2>ALL COURIERS</h2>
+    <table border="-">
+        <tr>
+            <th>Name</th>
+            <th>Company code</th>
+        </tr>
+        <ui:repeat value="#{courierServices.allCouriers}" var="courier">
+            <tr>
+                <th><h:link value="#{courier.companyName}" outcome="courierDetails?courierName=#{courier.companyName}"/></th>
+                <th><h:outputText value="#{courier.companyCode}"/></th>
+            </tr>
+        </ui:repeat>
+    </table>
+    <h2>CREATE NEW COMPANY(SENDER)</h2>
+    <h:form>
+        COMPANY NAME  <h:inputText value="#{senders.sendersToCreate.name}" required="true" /><br/>
+        COMPANY ADDRESS  <h:inputText value="#{senders.sendersToCreate.address}" required="true" /><br/>
+        CONTRACT WITH COURIERS  <h:inputText value="#{senders.couriersString}" required="true" /><br/>
+        <h:commandButton value="Create company" action="#{senders.createSenders()}"/>
+    </h:form>
+    <h2>COMPANIES</h2>
+    <ol>
+        <ui:repeat value="#{senders.allSenders}" var="sender">
+            <li>
+                <h:link value="#{sender.name}" outcome="senderDetails?senderName=#{sender.name}" />
+            </li>
+        </ui:repeat>
+    </ol>
+    <h:link outcome="index" value="Back to home page"/>
+</h:body>
+</html>

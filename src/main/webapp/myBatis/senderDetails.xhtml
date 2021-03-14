@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head>
+
+</h:head>
+<body>
+<h2>COMPANY #{senderInfoMyBatis.sender.name} ADRRESS: #{senderInfoMyBatis.sender.address}</h2>
+<h3>UPDATE CONTRACTS WITH COURIER SERVICES</h3>
+<h:form>
+    CURRENT AVAILABLE COURIER SERVICES <ol>
+    <ui:repeat value="#{senderInfoMyBatis.loadCouriersBySender(senderInfoMyBatis.sender.name)}" var="courier">
+        <li><h:outputText value="#{courier.companyname}" /></li>
+    </ui:repeat>
+</ol>
+</h:form>
+<h3>REGISTER NEW ORDER</h3>
+<h:form>
+    DISPATCH
+    RECEIVER NAME  <h:inputText value="#{dispatchesMyBatis.dispatchToCreate.receiver}" required="true" /><br/>
+    RECEIVER ADDRESS  <h:inputText value="#{dispatchesMyBatis.dispatchToCreate.receiveraddress}" required="true" /><br/>
+    COURIER <h:inputText value="#{dispatchesMyBatis.companyName}" required="true" /><br/>
+    <h:commandButton value="CREATE ORDER" action="#{dispatchesMyBatis.createDispatch(senderInfoMyBatis.sender.name)}"/>
+</h:form>
+<h2>#{senderInfoMyBatis.sender.name} ALL ORDERS(DISPATCHES)</h2>
+<table border="-">
+    <tr>
+        <th>Dispatch ID</th>
+        <th>Receiver name</th>
+        <th>Receiver address</th>
+        <th>Status</th>
+        <th>Couriers</th>
+    </tr>
+    <ui:repeat value="#{dispatchesMyBatis.loadDispatchesBySender(senderInfoMyBatis.sender.name)}" var="dispatch">
+        <tr>
+            <th><h:outputText value="#{dispatch.dispatchid}"/></th>
+            <th><h:outputText value="#{dispatch.receiver}"/></th>
+            <th><h:outputText value="#{dispatch.receiveraddress}"/></th>
+            <th><h:outputText value="#{dispatch.status}"/></th>
+            <th><h:outputText value="#{dispatch.courier}"/></th>
+        </tr>
+    </ui:repeat>
+</table>
+<h:link outcome="/index" value="Back to home page"/>
+</body>
+</html>

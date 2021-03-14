@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head>
+
+</h:head>
+<h:body>
+    <h2>CREATE NEW COURIER SERVICE</h2>
+    <h:form>
+        COURIER COMPANY NAME  <h:inputText value="#{couriersMyBatis.courierToCreate.companyname}" required="true" /><br/>
+        COMPANY CODE  <h:inputText value="#{couriersMyBatis.courierToCreate.code}" required="true"/><br/>
+        <h:commandButton value="Create courier service" action="#{couriersMyBatis.createCourier}"/><br/>
+    </h:form>
+    <h2>ALL COURIERS</h2>
+    <table border="-">
+        <tr>
+            <th>Name</th>
+            <th>Company code</th>
+        </tr>
+        <ui:repeat value="#{couriersMyBatis.allCourierServices}" var="courier">
+            <tr>
+                <th><h:link value="#{courier.companyname}" outcome="courierDetails?courierName=#{courier.companyname}"/></th>
+                <th><h:outputText value="#{courier.code}"/></th>
+            </tr>
+        </ui:repeat>
+    </table>
+    <h2>CREATE NEW COMPANY(SENDER)</h2>
+    <h:form>
+        COMPANY NAME  <h:inputText value="#{sendersMyBatis.senderToCreate.name}" required="true" /><br/>
+        COMPANY ADDRESS  <h:inputText value="#{sendersMyBatis.senderToCreate.address}" required="true" /><br/>
+        CONTRACT WITH COURIERS  <h:inputText value="#{sendersMyBatis.couriersString}" required="true" /><br/>
+        <h:commandButton value="Create company" action="#{sendersMyBatis.createSender}"/>
+    </h:form>
+    <h2>COMPANIES</h2>
+    <ol>
+        <ui:repeat value="#{sendersMyBatis.allSenders}" var="sender">
+            <li>
+                <h:link value="#{sender.name}" outcome="senderDetails?senderName=#{sender.name}" />
+            </li>
+        </ui:repeat>
+    </ol>
+    <h:link outcome="/index" value="Back to home page"/>
+</h:body>
+</html>
