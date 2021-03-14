@@ -72,7 +72,7 @@ public class SendersMyBatis {
     public List<Courier> getCouriersFromString (){
         List<Courier> couriersList = new ArrayList<>();
         String[] couriersNames = couriersString.trim().split(",");
-        Courier foundCourier = null;
+        Courier foundCourier;
         for(String courierName : couriersNames){
             foundCourier = courierMapper.selectByPrimaryKey(courierName);
 

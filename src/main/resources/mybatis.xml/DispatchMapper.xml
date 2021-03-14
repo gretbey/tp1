@@ -74,4 +74,9 @@
     from PUBLIC.DISPATCH
     where SENDER = #{sender,jdbcType=VARCHAR}
   </select>
+  <select id="selectByCourier" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select DISPATCHID, RECEIVERADDRESS, RECEIVER, STATUS, COURIER, SENDER
+    from PUBLIC.DISPATCH
+    where COURIER = #{courier,jdbcType=VARCHAR}
+  </select>
 </mapper>

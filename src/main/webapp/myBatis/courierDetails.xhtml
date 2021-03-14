@@ -16,7 +16,7 @@
             <th>Status</th>
             <th>Couriers</th>
         </tr>
-        <ui:repeat value="#{courierServiceInfoMyBatis.courierService.dispatches}" var="dispatch">
+        <ui:repeat value="#{courierServiceInfoMyBatis.loadAllCourierDispatches()}" var="dispatch">
             <tr>
                 <th><h:link value="#{dispatch.dispatchid}" outcome="dispatchDetails?dispatchId=#{dispatch.dispatchid}"/></th>
                 <th><h:outputText value="#{dispatch.receiver}"/></th>

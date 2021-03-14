@@ -4,8 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lt.vu.entities.CourierService;
 import lt.vu.mybatis.dao.CourierMapper;
+import lt.vu.mybatis.dao.DispatchMapper;
 import lt.vu.mybatis.dao.SenderMapper;
 import lt.vu.mybatis.model.Courier;
+import lt.vu.mybatis.model.Dispatch;
 import lt.vu.persistence.CourierServicesDAO;
 import lt.vu.persistence.SendersDAO;
 
@@ -15,6 +17,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 @ViewScoped
@@ -23,8 +26,6 @@ import java.util.Map;
 @Setter
 public class CourierServiceInfoMyBatis implements Serializable {
 
-    @Inject
-    private SenderMapper senderMapper;
 
     @Inject
     private CourierMapper courierMapper;
@@ -33,6 +34,8 @@ public class CourierServiceInfoMyBatis implements Serializable {
     @Setter
     private Courier courierService = new Courier();
 
+    @Inject
+    DispatchMapper dispatchMapper;
 
     @PostConstruct
     public void init(){
@@ -45,4 +48,6 @@ public class CourierServiceInfoMyBatis implements Serializable {
     private void loadCourierService(String name){
         courierService = courierMapper.selectByPrimaryKey(name);
     }
+    public List<Dispatch> loadAllCourierDispatches() { return dispatchMapper.selectByCourier(courierService.getCompanyname());}
+
 }

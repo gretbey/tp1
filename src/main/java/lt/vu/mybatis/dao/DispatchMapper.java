@@ -47,4 +47,5 @@ public interface DispatchMapper {
     int updateByPrimaryKey(Dispatch record);
 
     List<Dispatch> selectBySender(String name);
+    List<Dispatch> selectByCourier(String name);
 }

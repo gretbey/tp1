@@ -35,13 +35,7 @@ public class SenderInfoMyBatis implements Serializable {
     private SenderMapper senderMapper;
 
     @Inject
-    private CourierMapper courierMapper;
-
-    @Inject
     private CourierSendersMapper courierSendersMapper;
-
-    @Inject
-    private DispatchMapper dispatchMapper;
 
     @Getter
     @Setter
@@ -55,7 +49,7 @@ public class SenderInfoMyBatis implements Serializable {
     private String couriersString;
 
     @Inject
-    private Senders senders;
+    private SendersMyBatis sendersMyBatis;
 
     @Getter
     @Setter
@@ -76,13 +70,5 @@ public class SenderInfoMyBatis implements Serializable {
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         String senderName = requestParameters.get("senderName");
         this.sender = senderMapper.selectByPrimaryKey(senderName);
-    }
-
-    @Transactional
-    @LoggedInvocation
-    public String updateSenderCourierServices(){
-        //sender.(senders.getCouriersFromString());
-        //sendersDAO.update(sender);
-        return "/myBatis/senderDetails?senderName=" + sender.getName() + "&faces-redirect=true";
     }
 }

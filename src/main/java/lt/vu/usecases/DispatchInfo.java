@@ -40,7 +40,7 @@ public class DispatchInfo implements Serializable {
         loadDispatch(dispatchId);
     }
 
-    @Transactional
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     @LoggedInvocation
     public String updateStatus(){
         dispatchesDAO.update(dispatch);

@@ -56,14 +56,6 @@ public class SenderInfo implements Serializable {
         loadSender(senderName);
     }
 
-    @Transactional
-    @LoggedInvocation
-    public String updateSenderCourierServices(){
-       sender.setCourierServices(senders.getCouriersFromString());
-       sendersDAO.update(sender);
-       return "senderDetails?senderName=" + sender.getName() + "&faces-redirect=true";
-    }
-
     private void loadSender(String name){
         sender = sendersDAO.findOne(name);
     }

@@ -37,7 +37,7 @@ public class DispatchInfoMyBatis implements Serializable {
         loadDispatch(dispatchId);
     }
 
-    @Transactional
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     @LoggedInvocation
     public String updateStatus(){
         dispatchMapper.updateByPrimaryKey(dispatch);
