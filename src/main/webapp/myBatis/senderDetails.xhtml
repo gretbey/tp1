@@ -33,7 +33,6 @@
         <th>Receiver name</th>
         <th>Receiver address</th>
         <th>Status</th>
-        <th>Couriers</th>
     </tr>
     <ui:repeat value="#{dispatchesMyBatis.loadDispatchesBySender(senderInfoMyBatis.sender.name)}" var="dispatch">
         <tr>
@@ -41,7 +40,6 @@
             <th><h:outputText value="#{dispatch.receiver}"/></th>
             <th><h:outputText value="#{dispatch.receiveraddress}"/></th>
             <th><h:outputText value="#{dispatch.status}"/></th>
-            <th><h:outputText value="#{dispatch.courier}"/></th>
         </tr>
     </ui:repeat>
 </table>

@@ -16,7 +16,6 @@ import java.util.Objects;
 @Setter
 public class Dispatch implements Serializable {
     public Dispatch(){
-
     }
 
     @Id

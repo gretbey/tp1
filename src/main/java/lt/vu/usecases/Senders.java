@@ -54,7 +54,7 @@ public class Senders {
         List<CourierService> couriersList = new ArrayList<>();
         String[] couriersNames = couriersString.replaceAll(" ", "").split(",");
         for(String courierName : couriersNames){
-            CourierService foundCourier = courierServicesDAO.findOne(courierName);
+            CourierService foundCourier = courierServicesDAO.findByName(courierName);
             if (foundCourier == null)
             {
                 CourierService courierToCreate = new CourierService();

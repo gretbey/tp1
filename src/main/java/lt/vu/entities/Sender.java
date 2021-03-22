@@ -11,7 +11,8 @@ import java.util.Objects;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Sender.findAll", query = "select t from Sender as t")
+        @NamedQuery(name = "Sender.findAll", query = "select t from Sender as t"),
+        @NamedQuery(name = "Sender.findByName", query = "select a from Sender as a where a.name = :name")
 })
 @Table(name = "SENDER")
 @Getter
@@ -21,6 +22,10 @@ public class Sender implements Serializable {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Integer id;
+
     @Column(name = "NAME")
     private String name;
 

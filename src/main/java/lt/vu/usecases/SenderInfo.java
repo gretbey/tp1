@@ -57,6 +57,6 @@ public class SenderInfo implements Serializable {
     }
 
     private void loadSender(String name){
-        sender = sendersDAO.findOne(name);
+        sender = sendersDAO.findByName(name);
     }
 }

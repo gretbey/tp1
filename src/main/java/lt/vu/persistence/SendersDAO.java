@@ -5,6 +5,7 @@ import lt.vu.entities.Sender;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @ApplicationScoped
@@ -16,8 +17,8 @@ public class SendersDAO {
         this.entityManager.persist(sender);
     }
 
-    public Sender findOne(String name){
-        return entityManager.find(Sender.class, name);
+    public Sender findOne(String id){
+        return entityManager.find(Sender.class, id);
     }
 
     public Sender update(Sender sender){
@@ -26,5 +27,11 @@ public class SendersDAO {
 
     public List<Sender> loadAll() {
         return entityManager.createNamedQuery("Sender.findAll", Sender.class).getResultList();
+    }
+
+    public Sender findByName(String name) {
+        TypedQuery<Sender> query = entityManager.createNamedQuery("Sender.findByName", Sender.class);
+        query.setParameter("name", name);
+        return query.getSingleResult();
     }
 }

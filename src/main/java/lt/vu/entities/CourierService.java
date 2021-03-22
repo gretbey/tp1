@@ -13,14 +13,19 @@ import java.util.Objects;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "CourierService.findAll", query = "select a from CourierService as a"),
+        @NamedQuery(name = "CourierService.findByCompanyName", query = "select a from CourierService as a where a.companyName = :name")
 })
 @Table(name = "COURIER")
 @Getter @Setter
 public class CourierService implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Integer id;
+
     @Column(name = "CODE")
     private String companyCode;
 
-    @Id
     @Size(max = 50)
     @Column(name = "COMPANYNAME")
     private String companyName;
