@@ -41,7 +41,7 @@ public class DispatchInfoMyBatis implements Serializable {
     @LoggedInvocation
     public String updateStatus(){
         dispatchMapper.updateByPrimaryKey(dispatch);
-        return "/myBatis/courierDetails?courierName=" + dispatch.getCourier() + "&faces-redirect=true";
+        return "/myBatis/couriers_senders.xhtml?faces-redirect=true";
     }
 
     private void loadDispatch(String dispatchId){

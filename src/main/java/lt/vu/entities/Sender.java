@@ -26,7 +26,7 @@ public class Sender implements Serializable {
     @Column(name = "ID")
     private Integer id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false)
     private String name;
 
     @Column(name = "ADDRESS")

@@ -1,5 +1,6 @@
 package lt.vu.entities;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,7 @@ import java.util.Objects;
 @Table(name = "DISPATCH")
 @Getter
 @Setter
+@EqualsAndHashCode(of = {"receiverName", "dispatchID"})
 public class Dispatch implements Serializable {
     public Dispatch(){
     }
@@ -38,17 +40,4 @@ public class Dispatch implements Serializable {
 
     @Column(name = "RECEIVERADDRESS")
     private String receiverAddress;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Dispatch dispatch = (Dispatch) o;
-        return Objects.equals(dispatchID, dispatch.dispatchID);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(dispatchID);
-    }
 }

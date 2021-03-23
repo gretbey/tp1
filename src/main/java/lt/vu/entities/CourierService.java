@@ -23,11 +23,11 @@ public class CourierService implements Serializable {
     @Column(name = "ID")
     private Integer id;
 
-    @Column(name = "CODE")
+    @Column(name = "CODE", nullable = false)
     private String companyCode;
 
     @Size(max = 50)
-    @Column(name = "COMPANYNAME")
+    @Column(name = "COMPANYNAME", nullable = false)
     private String companyName;
 
     @ManyToMany(mappedBy = "courierServices")
