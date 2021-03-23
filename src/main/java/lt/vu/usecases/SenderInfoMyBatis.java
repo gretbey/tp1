@@ -69,6 +69,6 @@ public class SenderInfoMyBatis implements Serializable {
         Map<String, String> requestParameters =
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         String senderName = requestParameters.get("senderName");
-        this.sender = senderMapper.selectByPrimaryKey(senderName);
+        this.sender = senderMapper.selectByName(senderName);
     }
 }

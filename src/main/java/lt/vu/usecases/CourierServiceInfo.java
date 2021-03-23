@@ -44,6 +44,6 @@ public class CourierServiceInfo implements Serializable {
     }
 
     private void loadCourierService(String name){
-        courierService = courierServicesDAO.findOne(name);
+        courierService = courierServicesDAO.findByName(name);
     }
 }

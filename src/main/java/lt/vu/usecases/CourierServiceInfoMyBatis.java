@@ -46,8 +46,8 @@ public class CourierServiceInfoMyBatis implements Serializable {
     }
 
     private void loadCourierService(String name){
-        courierService = courierMapper.selectByPrimaryKey(name);
+        courierService = courierMapper.selectByCompanyName(name);
     }
-    public List<Dispatch> loadAllCourierDispatches() { return dispatchMapper.selectByCourier(courierService.getCompanyname());}
+    public List<Dispatch> loadAllCourierDispatches() { return dispatchMapper.selectByCourier(courierService.getId());}
 
 }

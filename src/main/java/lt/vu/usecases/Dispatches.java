@@ -51,9 +51,9 @@ public class Dispatches {
 
     @Transactional
     public String createDispatch(String senderName) {
-        this.sender = sendersDAO.findOne(senderName);
+        this.sender = sendersDAO.findByName(senderName);
         dispatchesToCreate.setSender(this.sender);
-        this.courier = courierServicesDAO.findOne(companyName);
+        this.courier = courierServicesDAO.findByName(companyName);
         if (sender.getCourierServices().contains(courier)) {
             dispatchesToCreate.setCourierService(this.courier);
             this.dispatchesDAO.persist(dispatchesToCreate);

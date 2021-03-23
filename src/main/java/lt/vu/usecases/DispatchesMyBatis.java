@@ -3,6 +3,7 @@ package lt.vu.usecases;
 import lombok.Getter;
 import lombok.Setter;
 import lt.vu.entities.CourierService;
+import lt.vu.mybatis.dao.CourierMapper;
 import lt.vu.mybatis.dao.DispatchMapper;
 import lt.vu.mybatis.dao.SenderMapper;
 import lt.vu.mybatis.model.Courier;
@@ -21,6 +22,12 @@ import java.util.List;
 public class DispatchesMyBatis {
     @Inject
     private DispatchMapper dispatchMapper;
+
+    @Inject
+    private SenderMapper senderMapper;
+
+    @Inject
+    private CourierMapper courierMapper;
 
     @Getter
     private List<Dispatch> allDispatches;
@@ -41,13 +48,17 @@ public class DispatchesMyBatis {
     private void loadAllDispatches() {
         this.allDispatches = dispatchMapper.selectAll();
     }
-    public List<Dispatch> loadDispatchesBySender(String senderName) { return dispatchMapper.selectBySender(senderName);}
+    public List<Dispatch> loadDispatchesBySender(String senderName) {
+        return dispatchMapper.selectBySender(senderMapper.selectByName(senderName).getId());
+    }
     @Transactional
     public String createDispatch(String senderName) {
         dispatchToCreate.setStatus("created");
-        dispatchToCreate.setSender(senderName);
-        dispatchToCreate.setCourier(companyName);
+        Sender crtSender = senderMapper.selectByName(senderName);
+        Courier crtCourier = courierMapper.selectByCompanyName(companyName);
+        dispatchToCreate.setSender(crtSender.getId());
+        dispatchToCreate.setCourier(crtCourier.getId());
         this.dispatchMapper.insert(dispatchToCreate);
-        return "/myBatis/senderDetails?senderName=" + dispatchToCreate.getSender() + "&faces-redirect=true";
+        return "/myBatis/senderDetails?senderName=" + crtSender.getName() + "&faces-redirect=true";
     }
 }

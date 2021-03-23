@@ -30,8 +30,6 @@ public class DispatchInfo implements Serializable {
     @Setter
     private Dispatch dispatch = new Dispatch();
 
-
-
     @PostConstruct
     public void init(){
         Map<String, String> requestParameters =
