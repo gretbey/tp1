@@ -4,8 +4,6 @@ package lt.vu.usecases;
 import lombok.Getter;
 import lombok.Setter;
 import lt.vu.entities.CourierService;
-import lt.vu.mybatis.dao.DispatchMapper;
-import lt.vu.mybatis.model.Dispatch;
 import lt.vu.persistence.CourierServicesDAO;
 import lt.vu.persistence.SendersDAO;
 
@@ -15,8 +13,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
+
 
 @ViewScoped
 @Named

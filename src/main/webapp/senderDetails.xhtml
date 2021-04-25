@@ -21,28 +21,37 @@
 <h3>REGISTER NEW ORDER</h3>
 <h:form>
     DISPATCH
-    RECEIVER NAME  <h:inputText value="#{dispatches.dispatchesToCreate.receiverName}" required="true" /><br/>
-    RECEIVER ADDRESS  <h:inputText value="#{dispatches.dispatchesToCreate.receiverAddress}" required="true" /><br/>
-    COURIER <h:inputText value="#{dispatches.companyName}" required="true" /><br/>
-    <h:commandButton value="CREATE ORDER" action="#{dispatches.createDispatch(senderInfo.sender.name)}"/>
+    RECEIVER NAME  <h:inputText value="#{dispatches.dispatchesToCreate.receiverName}"/><br/>
+    RECEIVER ADDRESS  <h:inputText value="#{dispatches.dispatchesToCreate.receiverAddress}"/><br/>
+    COURIER <h:selectOneMenu value="#{dispatches.companyName}">
+    <f:selectItems value="#{senderInfo.sender.courierServices}" var="CourierService" itemValue="#{CourierService.companyName}" itemLabel="#{CourierService.companyName}" />
+</h:selectOneMenu><br/>
+    DISPATCH NUMBER <h:inputText value="#{dispatches.dispatchesToCreate.dispatchNumber}"/><br/>
+    <h:outputText value="#{generateDispatchNumber.dispatchNumberGenerationStatus}" />
+    <h:commandButton value="Generate dispatch number?" disabled="#{generateDispatchNumber.dispatchNumberGenerationRunning}" action="#{generateDispatchNumber.generateNewDispatchNumber}">
+        <f:param name="senderName" value="#{senderInfo.sender.name}" />
+    </h:commandButton>
+    <h:commandButton value="CREATE ORDER" action="#{dispatches.createDispatch(senderInfo.sender.name, generateDispatchNumber.dispatchNumberGenerationStatus)}"/>
 </h:form>
 <h2>#{senderInfo.sender.name} ALL ORDERS(DISPATCHES)</h2>
 <table border="-">
     <tr>
         <th>Dispatch ID</th>
+        <th>Dispatch number</th>
         <th>Receiver name</th>
         <th>Receiver address</th>
         <th>Status</th>
         <th>Couriers</th>
     </tr>
     <ui:repeat value="#{senderInfo.sender.dispatches}" var="dispatch">
-            <tr>
-                <th><h:outputText value="#{dispatch.dispatchID}"/></th>
-                <th><h:outputText value="#{dispatch.receiverName}"/></th>
-                <th><h:outputText value="#{dispatch.receiverAddress}"/></th>
-                <th><h:outputText value="#{dispatch.status}"/></th>
-                <th><h:outputText value="#{dispatch.courierService.companyName}"/></th>
-            </tr>
+        <tr>
+            <th><h:outputText value="#{dispatch.dispatchID}"/></th>
+            <th><h:outputText value="#{dispatch.dispatchNumber}"/></th>
+            <th><h:outputText value="#{dispatch.receiverName}"/></th>
+            <th><h:outputText value="#{dispatch.receiverAddress}"/></th>
+            <th><h:outputText value="#{dispatch.status}"/></th>
+            <th><h:outputText value="#{dispatch.courierService.companyName}"/></th>
+        </tr>
     </ui:repeat>
 </table>
 <h:link outcome="index" value="Back to home page"/>

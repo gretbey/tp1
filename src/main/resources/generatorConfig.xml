@@ -19,6 +19,7 @@
         <table schema="public" tableName="DISPATCH">
             <generatedKey column="dispatchId" identity="true" sqlStatement="JDBC" />
             <ignoreColumn column="opt_lock_version" />
+            <!--<columnOverride column="status" property="dispStatus"/>-->
         </table>
         <table schema="public" tableName="SENDER">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />

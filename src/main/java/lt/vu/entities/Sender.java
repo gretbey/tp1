@@ -32,6 +32,10 @@ public class Sender implements Serializable {
     @Column(name = "ADDRESS")
     private String address;
 
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
+
 
     @JoinTable(name = "COURIER_SENDERS", joinColumns = {
             @JoinColumn(name = "NAME", referencedColumnName = "NAME")}, inverseJoinColumns = {

@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @NamedQueries({
@@ -24,6 +23,9 @@ public class Dispatch implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String dispatchID;
 
+    @Column(name = "DISPATCHNUMBER")
+    private String dispatchNumber;
+
     @Column(name = "STATUS")
     private String status = "created";
 
@@ -40,4 +42,8 @@ public class Dispatch implements Serializable {
 
     @Column(name = "RECEIVERADDRESS")
     private String receiverAddress;
+
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
 }

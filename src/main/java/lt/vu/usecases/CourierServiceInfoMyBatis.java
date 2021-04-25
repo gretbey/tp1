@@ -25,8 +25,6 @@ import java.util.Map;
 @Getter
 @Setter
 public class CourierServiceInfoMyBatis implements Serializable {
-
-
     @Inject
     private CourierMapper courierMapper;
 
