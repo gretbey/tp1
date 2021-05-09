@@ -50,13 +50,9 @@ public class Dispatches {
 
     @Transactional
     @LoggedInvocation
-    public String createDispatch(String senderName, String generatedDispatchNumber) {
+    public String createDispatch(String senderName) {
         this.sender = sendersDAO.findByName(senderName);
         dispatchesToCreate.setSender(this.sender);
-        String labelText = "Suggested dispatch number: ";
-        if (generatedDispatchNumber.startsWith(labelText)){
-            dispatchesToCreate.setDispatchNumber(generatedDispatchNumber.substring(labelText.length()));
-        }
         this.courier = courierServicesDAO.findByName(companyName);
         if (sender.getCourierServices().contains(courier)) {
             dispatchesToCreate.setCourierService(this.courier);

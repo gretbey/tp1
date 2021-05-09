@@ -26,12 +26,15 @@ public class GenerateDispatchNumber implements Serializable {
         Map<String, String> requestParameters =
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         dispatchNumberGenerationTask = CompletableFuture.supplyAsync(() -> dispatchNumberGenerator.generateDispatchNumber());
+
+        //dispatchNumberGenerationTask.join();
         return  "/senderDetails.xhtml?faces-redirect=true&senderName=" + requestParameters.get("senderName");
     }
 
     public boolean isDispatchNumberGenerationRunning() {
         return dispatchNumberGenerationTask != null && !dispatchNumberGenerationTask.isDone();
     }
+
 
     public String getDispatchNumberGenerationStatus() throws ExecutionException, InterruptedException {
         if (dispatchNumberGenerationTask == null) {

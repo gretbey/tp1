@@ -20,7 +20,7 @@ public class DispatchNumberWithLettersGenerator implements Serializable, IDispat
                     "Interrupted process",
                     JOptionPane.WARNING_MESSAGE);
         }
-        int randNumberOfLetters = new Random().nextInt(2) + 1;// nuo 1 iki 3 bus raidziu
+        int randNumberOfLetters = new Random().nextInt(3) + 1;// nuo 1 iki 3 bus raidziu
         generatedDispatchNumber = "";
         for (int i=0; i<randNumberOfLetters;i++)
         {

@@ -31,7 +31,7 @@
     <h:commandButton value="Generate dispatch number?" disabled="#{generateDispatchNumber.dispatchNumberGenerationRunning}" action="#{generateDispatchNumber.generateNewDispatchNumber}">
         <f:param name="senderName" value="#{senderInfo.sender.name}" />
     </h:commandButton>
-    <h:commandButton value="CREATE ORDER" action="#{dispatches.createDispatch(senderInfo.sender.name, generateDispatchNumber.dispatchNumberGenerationStatus)}"/>
+    <h:commandButton value="CREATE ORDER" action="#{dispatches.createDispatch(senderInfo.sender.name)}"/>
 </h:form>
 <h2>#{senderInfo.sender.name} ALL ORDERS(DISPATCHES)</h2>
 <table border="-">

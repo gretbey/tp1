@@ -87,29 +87,29 @@ public class DispatchController {
         @PUT
         @Consumes(MediaType.APPLICATION_JSON)
         @Transactional
-        public Response updateDispatch(DispatchDTO disp) {
+        public Response update(@PathParam("id") final Integer id, DispatchDTO dispatchDTO) {
             try {
-                if (disp == null || disp.getDispatchNumber() == null || disp.getDispatchID() == null || disp.getStatus() == null) {
-                    return Response.status(Response.Status.BAD_REQUEST).build();
+                Dispatch existingDisp = dispatchesDAO.findOne(id.toString());
+                if (existingDisp == null) {
+                    return Response.status(Response.Status.NOT_FOUND).build();
                 }
-                Dispatch dispToCreate = new Dispatch();
-                dispToCreate.setDispatchID(disp.getDispatchID());
-                CourierService courierService = courierServicesDAO.findOne((disp.getCourierId()));
+                existingDisp.setDispatchID(id.toString());
+                CourierService courierService = courierServicesDAO.findOne((dispatchDTO.getCourierId()));
                 if(courierService == null){
                     return Response.status(Response.Status.NOT_FOUND).build();
                 }
-                dispToCreate.setCourierService(courierService);
-                dispToCreate.setStatus(disp.getStatus());
-                dispToCreate.setReceiverAddress(disp.getReceiverAddress());
-                dispToCreate.setReceiverName(disp.getReceiverName());
-                dispToCreate.setDispatchNumber(disp.getDispatchNumber());
-                Sender sender = sendersDAO.findOne(disp.getSenderId());
+                existingDisp.setCourierService(courierService);
+                existingDisp.setStatus(dispatchDTO.getStatus());
+                existingDisp.setReceiverAddress(dispatchDTO.getReceiverAddress());
+                existingDisp.setReceiverName(dispatchDTO.getReceiverName());
+                existingDisp.setDispatchNumber(dispatchDTO.getDispatchNumber());
+                Sender sender = sendersDAO.findOne(dispatchDTO.getSenderId());
                 if(sender == null){
                     return Response.status(Response.Status.NOT_FOUND).build();
                 }
-                dispToCreate.setSender(sender);
-                dispatchesDAO.update(dispToCreate);
-                return Response.status(Response.Status.CREATED).build();
+                existingDisp.setSender(sender);
+                dispatchesDAO.update(existingDisp);
+                return Response.ok().build();
             } catch (OptimisticLockException ole) {
                 return Response.status(Response.Status.CONFLICT).build();
             }
@@ -141,7 +141,7 @@ public class DispatchController {
                 }
                 dispToCreate.setSender(sender);//
                 dispatchesDAO.persist(dispToCreate);
-                return Response.status(Response.Status.CREATED).build();
+                return Response.ok().build();
             } catch (OptimisticLockException ole) {
                 return Response.status(Response.Status.CONFLICT).build();
             }

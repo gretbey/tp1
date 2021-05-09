@@ -5,10 +5,9 @@ import javax.enterprise.inject.Specializes;
 import javax.swing.*;
 import java.util.Random;
 
-//@Specializes
+@Specializes
 @ApplicationScoped
-public class DispatchNumberWithOneLetterGenerator extends DispatchNumberWithoutLettersGenerator{
-    String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+public class DispatchNumberFixedSizeGenerator extends DispatchNumberWithoutLettersGenerator{
     String generatedDispatchNumber = "";
     public String generateDispatchNumber() {
         try {
@@ -20,8 +19,9 @@ public class DispatchNumberWithOneLetterGenerator extends DispatchNumberWithoutL
                     JOptionPane.WARNING_MESSAGE);
         }
         generatedDispatchNumber = "";
-        generatedDispatchNumber += alphabet.toCharArray()[new Random().nextInt(alphabet.toCharArray().length)];
-        generatedDispatchNumber += new Random().nextInt(1000000) + "";
+        int minimum = 1000000;
+        //range 1000000-9999999
+        generatedDispatchNumber += minimum + new Random().nextInt(10000000) + "";
         return generatedDispatchNumber;
     }
 }
