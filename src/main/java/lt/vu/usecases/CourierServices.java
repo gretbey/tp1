@@ -3,14 +3,15 @@ package lt.vu.usecases;
 import lombok.Getter;
 import lombok.Setter;
 import lt.vu.entities.CourierService;
+import lt.vu.interceptors.LoggedInvocation;
 import lt.vu.persistence.CourierServicesDAO;
-import lt.vu.persistence.SendersDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
+
 
 @Model
 public class CourierServices {
@@ -30,6 +31,7 @@ public class CourierServices {
     }
 
     @Transactional
+    @LoggedInvocation
     public String createCourierService(){
         this.courierServicesDAO.persist(couriersToCreate);
         return "couriers_senders.xhtml?faces-redirect=true";

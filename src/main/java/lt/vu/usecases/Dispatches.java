@@ -7,12 +7,11 @@ import lt.vu.persistence.*;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.swing.*;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Map;
+import lt.vu.interceptors.LoggedInvocation;
 
 @Model
 public class Dispatches {
@@ -50,6 +49,7 @@ public class Dispatches {
     }
 
     @Transactional
+    @LoggedInvocation
     public String createDispatch(String senderName) {
         this.sender = sendersDAO.findByName(senderName);
         dispatchesToCreate.setSender(this.sender);
@@ -63,7 +63,7 @@ public class Dispatches {
         {
             JOptionPane.showMessageDialog(null,
                     "This courier is not available",
-                    "This",
+                    "This courier is not available",
                     JOptionPane.WARNING_MESSAGE);
             return "senderDetails?senderName=" + senderName + "&faces-redirect=false";
         }

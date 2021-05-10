@@ -1,7 +1,7 @@
 package lt.vu.persistence;
 
 import lt.vu.entities.CourierService;
-import lt.vu.entities.Sender;
+import lt.vu.interfaces.ICourierServicesDAO;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -10,15 +10,15 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @ApplicationScoped
-public class CourierServicesDAO {
+public class CourierServicesDAO implements ICourierServicesDAO {
     @Inject
     private EntityManager entityManager;
 
-    public void persist(CourierService courier){
+    public void persist(CourierService courier) {
         this.entityManager.persist(courier);
     }
 
-    public CourierService findOne(String id){
+    public CourierService findOne(int id){
         return entityManager.find(CourierService.class, id);
     }
 

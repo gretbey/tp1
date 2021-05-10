@@ -17,7 +17,7 @@ public class SendersDAO {
         this.entityManager.persist(sender);
     }
 
-    public Sender findOne(String id){
+    public Sender findOne(int id){
         return entityManager.find(Sender.class, id);
     }
 

@@ -4,15 +4,18 @@ import lombok.Getter;
 import lombok.Setter;
 import lt.vu.entities.CourierService;
 import lt.vu.entities.Sender;
+import lt.vu.interceptors.LoggedInvocation;
 import lt.vu.persistence.CourierServicesDAO;
 import lt.vu.persistence.SendersDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
+import javax.swing.*;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Model
 public class Senders {
@@ -39,6 +42,7 @@ public class Senders {
     }
 
     @Transactional
+    @LoggedInvocation
     public String createSenders(){
         this.sendersDAO.persist(sendersToCreate);
         sendersToCreate.setCourierServices(getCouriersFromString());
@@ -54,17 +58,18 @@ public class Senders {
         List<CourierService> couriersList = new ArrayList<>();
         String[] couriersNames = couriersString.replaceAll(" ", "").split(",");
         for(String courierName : couriersNames){
-            CourierService foundCourier = courierServicesDAO.findByName(courierName);
-            if (foundCourier == null)
+            CourierService foundCourier;
+            try
             {
-                CourierService courierToCreate = new CourierService();
-                courierToCreate.setCompanyName(courierName);
-                courierToCreate.setCompanyCode(courierName.substring(0,2));
-                couriersList.add(courierToCreate);
-            }
-            else
-            {
+                foundCourier = courierServicesDAO.findByName(courierName);
                 couriersList.add(foundCourier);
+            }
+            catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null,
+                        "Entered courier does not exist",
+                        "Entered courier does not exist",
+                        JOptionPane.WARNING_MESSAGE);
             }
         }
         return couriersList;
